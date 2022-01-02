@@ -12,36 +12,36 @@
 
 #include "push_swap.h"
 
-t_stack	**ft_rotate_stack(t_stack **stack)
+t_stack	*ft_bottom(t_stack *stack)
 {
-	t_stack	*rota;
-	t_stack	*tmp;
-
-	tmp = NULL;
-	rota = ft_stacknew(ft_pop(stack)->n);
-	/*while (*stack)
-	{
-		ft_push_stack(stack, &tmp);
-		(*stack) = (*stack)->next;
-	}
-	while (*tmp)
-	{
-		ft_push_stack(tmp, rota);
-		(*tmp) = (*tmp)->next;
-	}
-	free(stack);
-	free(tmp);*/
-	return (rota);
+	if (stack == NULL)
+		return (NULL);
+	while (stack && stack -> next)
+		stack = stack -> next;
+	return (stack);
 }
 
-int main(int argc, char const *argv[])
+void	ft_add_bottom(t_stack **stack, t_stack *new)
+{	
+	t_stack	*p;
+
+	if (!*stack)
+		*stack = new;
+	else
+	{
+		p = ft_bottom(*stack);
+		p -> next = new;
+	}
+}
+
+void	ft_rotate_stack(t_stack **stack, char name)
 {
-	t_stack *a;
-	ft_push(&a, ft_stacknew(5));
-	ft_push(&a, ft_stacknew(6));
-	ft_push(&a, ft_stacknew(7));
-	print(&a);
-	ft_rotate_stack(&a);
-	print(&a);
-	return 0;
+	t_stack	*tmp;
+
+	tmp = ft_pop(stack);
+	ft_add_bottom(stack, tmp);
+	if (name == 'a')
+		write(1, "ra\n", 3);
+	else if (name == 'b')
+		write(1, "rb\n", 3);
 }

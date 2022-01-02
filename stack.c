@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*ft_stacknew(int n)
+t_stack	*ft_stacknew(int n, char name)
 {
 	t_stack	*new;
 
@@ -21,6 +21,7 @@ t_stack	*ft_stacknew(int n)
 		return (NULL);
 	new -> n = n;
 	new -> next = NULL;
+	new -> name = name;
 	return (new);
 }
 
@@ -39,17 +40,26 @@ t_stack	*ft_pop(t_stack **stack)
 		return (NULL);
 	temp = *stack;
 	*stack = temp -> next;
+	temp -> next = NULL;
 	return (temp);
 }
 
-void	ft_push_stack(t_stack **src, t_stack **dest)
+void	ft_push_stack(t_stack **src, t_stack **dest, char name)
 {
+	t_stack	*temp;
+	
 	if (!*src)
 		return ;
-	ft_push(dest, ft_pop(src));
+	temp = ft_pop(src);
+	temp -> next = NULL;
+	ft_push(dest, temp);
+	if (name == 'a')
+		write(1, "pa\n", 3);
+	else if (name == 'b')
+		write(1, "pb\n", 3);
 }
 
-void	ft_swap_stack(t_stack **stack)
+void	ft_swap_stack(t_stack **stack, char dst)
 {
 	t_stack	*top;
 	t_stack	*bottom;
@@ -60,6 +70,10 @@ void	ft_swap_stack(t_stack **stack)
 	bottom = ft_pop(stack);
 	ft_push(stack, top);
 	ft_push(stack, bottom);
+	if (dst == 'a')
+		write(1, "sa\n", 3);
+	else if (dst == 'b')
+		write(1, "sb\n", 3);
 }
 
 #include <stdio.h>

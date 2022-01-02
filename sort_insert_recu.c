@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 15:39:31 by bbordere          #+#    #+#             */
-/*   Updated: 2021/12/30 16:17:06 by bbordere         ###   ########.fr       */
+/*   Created: 2022/01/01 14:46:40 by bbordere          #+#    #+#             */
+/*   Updated: 2022/01/01 14:46:40 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_ss(t_stack **a, t_stack **b)
+void    ft_sort_insert(t_stack **stack, t_stack *x)
 {
-	ft_swap_stack(a, 'a');
-	ft_swap_stack(b, 'b');
+    t_stack *temp;
+
+    if (isEmpty(*stack) || x -> n > top(*stack))
+    {
+        ft_push(stack, x);
+        return ;
+    }
+    temp = ft_pop(stack);
+    ft_sort_insert(stack, x);
+    ft_push(stack, temp);
 }
-
-
