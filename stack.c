@@ -86,7 +86,7 @@ void	print(t_stack **stack)
 		printf("%d -> ", temp->n);
 		temp = temp->next;
 	}
-	printf("NULL\n");
+	printf("\n");
 }
 
 
