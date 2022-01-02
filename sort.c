@@ -51,8 +51,8 @@ void ft_sort_stack(t_stack **a, t_stack **b)
     temp = (*a);
     while(!isEmpty(a))
     {
-        i = ft_find_min(*a);
-        while (i--)
+        i = ft_find_min(temp);
+        while (i-- > 0)
             ft_rotate_stack(a, 'a');
         ft_push_stack(a, b, 'b');
     }
@@ -66,13 +66,13 @@ int main()
     a = NULL;
     t_stack *b;
     b = NULL;
-    for (int i = 0; i != 100; i++)
+    for (int i = 0; i != 5; i++)
     {
-        int rd = random() / 10000000;
+        int rd = random() / 1000000;
         ft_push(&a, ft_stacknew(rd, 'a'));
     }
-    //print(&a);
+    print(&a);
     ft_sort_stack(&a, &b);
-    //print(&a);
+    print(&a);
 	return 0;
 }
