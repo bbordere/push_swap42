@@ -27,12 +27,34 @@ void	ft_rr(t_stack **a, t_stack **b)
 size_t	ft_size(t_stack **stack)
 {
 	size_t	i;
+	t_stack	*temp;
 
 	i = 0;
-	while (!ft_empty(stack))
+	temp = *stack;
+	while (temp)
 	{
 		i++;
-		*stack = (*stack)->next;
+		temp = temp->next;
 	}
 	return (i);
+}
+
+void	ft_rrr(t_stack **a, t_stack **b)
+{
+	ft_reverse_rotate_stack(a, 'a');
+	ft_reverse_rotate_stack(b, 'b');
+}
+
+int		ft_is_sorted(t_stack **stack)
+{
+	t_stack	*temp;
+
+	temp = (*stack);
+	while (temp && temp -> next)
+	{
+		if (temp->n > temp->next->n)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
 }

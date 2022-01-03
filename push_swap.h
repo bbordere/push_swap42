@@ -33,5 +33,8 @@ t_stack	*ft_pop(t_stack **stack);
 int	ft_empty(t_stack **start);
 void	print(t_stack **stack);
 size_t	ft_size(t_stack **stack);
+int		ft_is_sorted(t_stack **stack);
+size_t	ft_digits(t_stack **stack);
+void	ft_radix(t_stack **a, t_stack **b);
 
 #endif

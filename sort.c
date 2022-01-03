@@ -48,15 +48,22 @@ size_t	ft_find_min(t_stack *stack)
 
 void	ft_sort_stack(t_stack **a, t_stack **b)
 {
-	t_stack	*temp;
 	size_t	i;
+	size_t	size;
 
-	temp = (*a);
+	size = ft_size(a);
 	while (!ft_empty(a))
 	{
 		i = ft_find_min(*a);
-		while (i--)
-			ft_rotate_stack(a, 'a');
+		if (i > (size / 2))
+		{
+			i = size - i;
+			while (i--)
+				ft_reverse_rotate_stack(a, 'a');
+		}
+		else
+			while (i--)
+				ft_rotate_stack(a, 'a');
 		ft_push_stack(a, b, 'b');
 	}
 	while (!ft_empty(b))
@@ -69,24 +76,17 @@ int main()
 	a = NULL;
 	t_stack *b;
 	b = NULL;
-	for (int i = 0; i != 5; i++)
-	{
+	for (int i = 0; i != 100; i++)
+	{		
 		int rd = rand() / 1000000;
 		ft_push(&a, ft_stacknew(rd, 'a'));
 	}
-	print(&a);
-	ft_reverse_rotate_stack(&a, 'a');
-	print(&a);
-	ft_reverse_rotate_stack(&a, 'a');
-	print(&a);
-	ft_reverse_rotate_stack(&a, 'a');
-	print(&a);
-	ft_reverse_rotate_stack(&a, 'a');
-	print(&a);
-	ft_reverse_rotate_stack(&a, 'a');
-	print(&a);
-	ft_reverse_rotate_stack(&a, 'a');
-	print(&a);
-	printf("%d", ft_size(&a));
-	return 0;
+	//print(&a);
+	//ft_sort_stack(&a, &b);
+	ft_radix(&a, &b);
+	while (!ft_empty(&a) && a->next)
+		free(ft_pop_bottom(&a));
+	free(a);
+	free(b);
+	//print(&a);
 }

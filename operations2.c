@@ -69,7 +69,7 @@ void	ft_reverse_rotate_stack(t_stack **stack, char name)
 	tmp = ft_pop_bottom(stack);
 	ft_push(stack, tmp);
 	if (name == 'a')
-		write(1, "ra\n", 3);
+		write(1, "rra\n", 4);
 	else if (name == 'b')
-		write(1, "rb\n", 3);
+		write(1, "rrb\n", 4);
 }
