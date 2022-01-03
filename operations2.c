@@ -34,12 +34,40 @@ void	ft_add_bottom(t_stack **stack, t_stack *new)
 	}
 }
 
+t_stack	*ft_pop_bottom(t_stack **stack)
+{
+	t_stack	*bottom;
+	t_stack	*temp;
+	t_stack	*poped;
+
+	bottom = ft_bottom(*stack);
+	temp = *stack;
+	while ((*stack)->next != bottom)
+		*stack = (*stack)->next;
+	poped = ft_pop(&(*stack)->next);
+	(*stack)->next = NULL;
+	*stack = temp;
+	return (poped);
+}
+
 void	ft_rotate_stack(t_stack **stack, char name)
 {
 	t_stack	*tmp;
 
 	tmp = ft_pop(stack);
 	ft_add_bottom(stack, tmp);
+	if (name == 'a')
+		write(1, "ra\n", 3);
+	else if (name == 'b')
+		write(1, "rb\n", 3);
+}
+
+void	ft_reverse_rotate_stack(t_stack **stack, char name)
+{
+	t_stack	*tmp;
+
+	tmp = ft_pop_bottom(stack);
+	ft_push(stack, tmp);
 	if (name == 'a')
 		write(1, "ra\n", 3);
 	else if (name == 'b')

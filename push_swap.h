@@ -27,7 +27,11 @@ void	ft_push_stack(t_stack **src, t_stack **dest, char dst);
 void	ft_swap_stack(t_stack **stack, char name);
 void	ft_rotate_stack(t_stack **stack, char name);
 void	ft_push(t_stack **stack, t_stack *new);
+void	ft_reverse_rotate_stack(t_stack **stack, char name);
+t_stack	*ft_pop_bottom(t_stack **stack);
 t_stack	*ft_pop(t_stack **stack);
+int	ft_empty(t_stack **start);
 void	print(t_stack **stack);
+size_t	ft_size(t_stack **stack);
 
 #endif

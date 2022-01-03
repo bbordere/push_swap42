@@ -47,7 +47,7 @@ t_stack	*ft_pop(t_stack **stack)
 void	ft_push_stack(t_stack **src, t_stack **dest, char name)
 {
 	t_stack	*temp;
-	
+
 	if (!*src)
 		return ;
 	temp = ft_pop(src);
@@ -86,8 +86,5 @@ void	print(t_stack **stack)
 		printf("%d -> ", temp->n);
 		temp = temp->next;
 	}
-	printf("\n");
+	printf("NULL\n");
 }
-
-
-
