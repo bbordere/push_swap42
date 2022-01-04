@@ -69,24 +69,3 @@ void	ft_sort_stack(t_stack **a, t_stack **b)
 	while (!ft_empty(b))
 		ft_push_stack(b, a, 'a');
 }
-
-int main()
-{
-	t_stack *a;
-	a = NULL;
-	t_stack *b;
-	b = NULL;
-	for (int i = 0; i != 100; i++)
-	{		
-		int rd = rand() / 1000000;
-		ft_push(&a, ft_stacknew(rd, 'a'));
-	}
-	//print(&a);
-	//ft_sort_stack(&a, &b);
-	ft_radix(&a, &b);
-	while (!ft_empty(&a) && a->next)
-		free(ft_pop_bottom(&a));
-	free(a);
-	free(b);
-	//print(&a);
-}

@@ -14,11 +14,14 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
+# define INT_MIN -214748364
 
 typedef struct s_stack
 {
 	struct s_stack	*next;
 	int				n;
+	int				sign;
+	int				index;
 	char			name;
 }	t_stack;
 
@@ -35,6 +38,7 @@ void	print(t_stack **stack);
 size_t	ft_size(t_stack **stack);
 int		ft_is_sorted(t_stack **stack);
 size_t	ft_digits(t_stack **stack);
-void	ft_radix(t_stack **a, t_stack **b);
+void	ft_radix_lsd(t_stack **a, t_stack **b);
+void	ft_set_index(t_stack **stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:30:13 by bbordere          #+#    #+#             */
-/*   Updated: 2022/01/03 16:55:14 by bbordere         ###   ########.fr       */
+/*   Updated: 2022/01/04 16:28:27 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_digits(t_stack **stack)
 	return (digits);
 }
 
-void	ft_radix(t_stack **a, t_stack **b)
+void	ft_radix_lsd(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 	size_t	size;
@@ -44,20 +44,20 @@ void	ft_radix(t_stack **a, t_stack **b)
 
 	bit = 0;
 	max = ft_digits(a);
+	ft_set_index(a);
 	while (bit < max)
 	{
 		size = ft_size(a);
 		while (size--)
 		{
 			tmp = (*a);
-			if (((tmp->n >> bit) & 1))
+			if (((((tmp->index) >> bit) & 1)))
 				ft_rotate_stack(a, 'a');
 			else
 				ft_push_stack(a, b, 'b');
-			tmp = tmp->next;
 		}
 		while (ft_size(b))
 			ft_push_stack(b, a, 'a');
 		bit++;
-	}	
+	}
 }
