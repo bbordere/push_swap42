@@ -21,14 +21,17 @@ t_stack	*ft_min(t_stack **a)
 	temp = *a;
 	s_min = NULL;
 	min = 0;
-	while (temp)
+	if (temp)
 	{
-		if ((temp->index) == -1 && (!min || temp -> n < s_min -> n))
+		while (temp)
 		{
-			min = 1;
-			s_min = temp;
+			if ((temp->index) == -1 && (!min || temp -> n < s_min -> n))
+			{
+				min = 1;
+				s_min = temp;
+			}
+			temp = temp->next;
 		}
-		temp = temp->next;
 	}
 	return (s_min);
 }
