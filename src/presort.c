@@ -6,7 +6,7 @@
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:30:13 by bbordere          #+#    #+#             */
-/*   Updated: 2022/01/05 16:51:24 by bbordere         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:28:18 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,25 @@ t_stack	*ft_min(t_stack **a)
 	temp = *a;
 	s_min = NULL;
 	min = 0;
-	while (temp)
+	if (temp)
 	{
-		if ((temp->index) == -1 && (!min || temp -> n < s_min -> n))
+		while (temp)
 		{
-			min = 1;
-			s_min = temp;
+			if ((temp->index) == -1 && (!min || temp -> n < s_min -> n))
+			{
+				min = 1;
+				s_min = temp;
+			}
+			temp = temp->next;
 		}
-		temp = temp->next;
 	}
 	return (s_min);
 }
 
 void	ft_set_index(t_stack **stack)
 {
-	size_t	i;
-	size_t	size;
+	int		i;
+	int		size;
 	t_stack	*temp;
 
 	i = -1;

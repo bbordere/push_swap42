@@ -37,7 +37,7 @@ void	ft_push(t_stack **stack, t_stack *new);
 void	ft_reverse_rotate_stack(t_stack **stack, char name);
 t_stack	*ft_pop_bottom(t_stack **stack);
 t_stack	*ft_pop(t_stack **stack);
-int	ft_empty(t_stack **start);
+int		ft_empty(t_stack **start);
 void	print(t_stack **stack);
 size_t	ft_size(t_stack **stack);
 int		ft_is_sorted(t_stack **stack);
@@ -45,5 +45,5 @@ size_t	ft_digits(t_stack **stack);
 void	ft_radix_lsd(t_stack **a, t_stack **b);
 void	ft_set_index(t_stack **stack);
 void	ft_sort_stack(t_stack **a, t_stack **b);
-void	ft_check_args(int ac, char **av);
+void	ft_check_args(int ac, char **av, int start);
 #endif

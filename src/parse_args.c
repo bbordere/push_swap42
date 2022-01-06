@@ -6,7 +6,7 @@
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 14:55:24 by bbordere          #+#    #+#             */
-/*   Updated: 2022/01/05 16:41:28 by bbordere         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:22:50 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long long ft_atoll(char *str)
 	return (s * res);
 }
 
-void	ft_error()
+void	ft_error(void)
 {
 	ft_putendl_fd("Error", 2);
 	exit(0);
@@ -48,11 +48,17 @@ void	ft_error()
 void	ft_valid_num(char *n)
 {
 	long long		temp;
-	size_t	i;
+	size_t			i;
 
 	i = -1;
+	if (ft_strlen(n) == 1 && (n[0] == '+' || n[0] == '-'))
+		ft_error();
 	while (n[++i])
 		if (!ft_isdigit(n[i]) && n[i] != '-' && n[i] != '+')
+			ft_error();
+	i = 0;
+	while (n[++i])
+		if (n[i] == '+' || n[i] == '-')
 			ft_error();
 	temp = ft_atoll(n);
 	if (temp > MAX_INT || temp < MIN_INT)
@@ -66,23 +72,20 @@ void	ft_doublon(int n, char **av, int i)
 			ft_error();
 }
 
-void	ft_check_args(int ac, char **av)
+void	ft_check_args(int ac, char **av, int start)
 {
-	int i;
+	int	i;
 
-	i = 0;
 	if (ac == 1)
 		exit(0);
-	if (ac == 2)
-	{
-		av = ft_split(av[1], ' ');
-		if (!av[0])
-			exit(0);
-	}
-	else
-		i = 1;
+	i = start;
 	while (av[i])
 	{
+		if (!av[i])
+			ft_error();
+		if ((ft_strlen(av[i]) > 11 && (av[i][0] != '+' || av[i][0] != '-')))
+			if (av[i][1] != '0')
+				ft_error();
 		ft_valid_num(av[i]);
 		ft_doublon(ft_atoi(av[i]), av, i);
 		i++;

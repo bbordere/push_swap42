@@ -6,11 +6,18 @@
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:30:13 by bbordere          #+#    #+#             */
-/*   Updated: 2022/01/05 16:49:13 by bbordere         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:43:05 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
 
 size_t	ft_digits(t_stack **stack)
 {
@@ -19,15 +26,15 @@ size_t	ft_digits(t_stack **stack)
 	size_t	digits;
 
 	temp = *stack;
-	max = temp->n;
+	max = ft_abs(temp -> n);
 	while (temp)
 	{
-		if (temp->n > max)
-			max = temp->n;
+		if (ft_abs(temp->n) > max)
+			max = ft_abs(temp->n);
 		temp = temp->next;
 	}
 	digits = 0;
-	while (max != 0)
+	while (max)
 	{
 		max = max >> 1;
 		digits++;
@@ -51,7 +58,7 @@ void	ft_radix_lsd(t_stack **a, t_stack **b)
 		while (size--)
 		{
 			tmp = (*a);
-			if (((((tmp->index) >> bit) & 1)))
+			if (((tmp->index) >> bit) & 1)
 				ft_rotate_stack(a, 'a');
 			else
 				ft_push_stack(a, b, 'b');
