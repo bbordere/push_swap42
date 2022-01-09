@@ -39,37 +39,39 @@ long long ft_atoll(char *str)
 	return (s * res);
 }
 
-void	ft_error(void)
+void	ft_error(int ac, char **av)
 {
+	if (ac == 2)
+		ft_free(av);
 	ft_putendl_fd("Error", 2);
-	exit(0);
+	exit(1);
 }
 
-void	ft_valid_num(char *n)
+void	ft_valid_num(int ac, char **av, char *n)
 {
 	long long		temp;
 	size_t			i;
 
 	i = -1;
 	if (ft_strlen(n) == 1 && (n[0] == '+' || n[0] == '-'))
-		ft_error();
+		ft_error(ac, av);
 	while (n[++i])
 		if (!ft_isdigit(n[i]) && n[i] != '-' && n[i] != '+')
-			ft_error();
+			ft_error(ac, av);
 	i = 0;
 	while (n[++i])
 		if (n[i] == '+' || n[i] == '-')
-			ft_error();
+			ft_error(ac, av);
 	temp = ft_atoll(n);
 	if (temp > MAX_INT || temp < MIN_INT)
-		ft_error();
+		ft_error(ac, av);
 }
 
-void	ft_doublon(int n, char **av, int i)
+void	ft_doublon(int n, int ac, char **av, int i)
 {
 	while (av[++i])
 		if (ft_atoll(av[i]) == n)
-			ft_error();
+			ft_error(ac, av);
 }
 
 void	ft_check_args(int ac, char **av, int start)
@@ -82,12 +84,12 @@ void	ft_check_args(int ac, char **av, int start)
 	while (av[i])
 	{
 		if (!av[i])
-			ft_error();
+			ft_error(ac, av);
 		if ((ft_strlen(av[i]) > 11 && (av[i][0] != '+' || av[i][0] != '-')))
 			if (av[i][1] != '0')
-				ft_error();
-		ft_valid_num(av[i]);
-		ft_doublon(ft_atoi(av[i]), av, i);
+				ft_error(ac, av);
+		ft_valid_num(ac, av, av[i]);
+		ft_doublon(ft_atoi(av[i]),ac, av, i);
 		i++;
 	}
 }

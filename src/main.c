@@ -15,7 +15,19 @@
 #include <time.h>
 #include <stdio.h>
 
-void ft_free(char **av)
+void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
+{
+	if (size == 2)
+		ft_sort_two(a);
+	else if (size == 3)
+		ft_sort_three(a);
+	else if (size == 5)
+		ft_sort_stack(a, b);
+	else
+		ft_radix_lsd(a, b);
+}
+
+void	ft_free(char **av)
 {
 	int	i;
 
@@ -42,29 +54,40 @@ void	ft_free_stack(t_stack **stack)
 	free((*stack));
 }
 
+void	ft_init_stacks(t_stack **a, char **av, int ac)
+{
+	int	start;
+	int	args;
+
+	start = 1;
+	args = ac;
+	if (args == 2)
+	{
+		av = ft_split(av[1], ' ');
+		args = ft_count_av(av);
+		start = 0;
+		if (!*av)
+		{
+			ft_free(av);
+			exit(1);
+		}
+	}
+	ft_check_args(ac, av, start);
+	while (args > start)
+		ft_push(a, ft_stacknew(ft_atoi(av[--args]), 'a'));
+	if (ac == 2)
+		ft_free(av);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		start;
 
 	a = NULL;
 	b = NULL;
-	start = 1;
-	if (ac == 2)
-	{
-		av = ft_split(av[1], ' ');
-		ac = ft_count_av(av);
-		start = 0;
-		if (!*av)
-			exit(0);
-	}	
-	ft_check_args(ac, av, start);
-	while (ac > start)
-		ft_push(&a, ft_stacknew(ft_atoi(av[--ac]), 'a'));
-	//ft_sort_stack(&a, &b);
-	ft_radix_lsd(&a, &b);
-	ft_free(av);
+	ft_init_stacks(&a, av, ac);
+	ft_do_sort(&a, &b, ft_size(&a));	
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }

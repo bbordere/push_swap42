@@ -12,13 +12,6 @@
 
 #include "push_swap.h"
 
-int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
 size_t	ft_digits(t_stack **stack)
 {
 	int		max;
@@ -26,12 +19,12 @@ size_t	ft_digits(t_stack **stack)
 	size_t	digits;
 
 	temp = *stack;
-	max = ft_abs(temp -> n);
+	max = temp -> index;
 	while (temp)
 	{
-		if (ft_abs(temp->n) > max)
-			max = ft_abs(temp->n);
-		temp = temp->next;
+		if (temp -> index > max)
+			max = temp -> index;
+		temp = temp -> next;
 	}
 	digits = 0;
 	while (max)
@@ -50,8 +43,8 @@ void	ft_radix_lsd(t_stack **a, t_stack **b)
 	size_t	max;
 
 	bit = 0;
-	max = ft_digits(a);
 	ft_set_index(a);
+	max = ft_digits(a);	
 	while (bit < max)
 	{
 		size = ft_size(a);

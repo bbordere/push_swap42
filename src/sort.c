@@ -55,7 +55,7 @@ void	ft_sort_stack(t_stack **a, t_stack **b)
 	while (!ft_empty(a))
 	{
 		i = ft_find_min(*a);
-		if (i > (size / 2))
+		if (i >= (size / 2))
 		{
 			i = size - i;
 			while (i--)

@@ -13,7 +13,7 @@
 import random
 
 file = open("rstack.txt", 'w')
-t=random.sample(range(-2147483648, 2147483647), 2000)
+t=random.sample(range(-2147483648, 2147483647), 500)
 for n in t:
 	stri = str(n) + " "
 	file.write(stri)

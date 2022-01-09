@@ -46,4 +46,8 @@ void	ft_radix_lsd(t_stack **a, t_stack **b);
 void	ft_set_index(t_stack **stack);
 void	ft_sort_stack(t_stack **a, t_stack **b);
 void	ft_check_args(int ac, char **av, int start);
+void	ft_sort_three(t_stack **stack);
+void	ft_sort_two(t_stack **stack);
+void	ft_free_stack(t_stack **stack);
+void	ft_free(char **av);
 #endif
