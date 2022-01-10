@@ -21,8 +21,10 @@ void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
 		ft_sort_two(a);
 	else if (size == 3)
 		ft_sort_three(a);
+	else if (size == 4)
+		ft_sort_four(a, b);
 	else if (size == 5)
-		ft_sort_stack(a, b);
+		ft_sort_five(a, b);
 	else
 		ft_radix_lsd(a, b);
 }
@@ -87,7 +89,8 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	ft_init_stacks(&a, av, ac);
-	ft_do_sort(&a, &b, ft_size(&a));	
+	if (!ft_is_sorted(&a))
+		ft_do_sort(&a, &b, ft_size(&a));	
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }

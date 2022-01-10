@@ -50,4 +50,6 @@ void	ft_sort_three(t_stack **stack);
 void	ft_sort_two(t_stack **stack);
 void	ft_free_stack(t_stack **stack);
 void	ft_free(char **av);
+void	ft_sort_four(t_stack **a, t_stack **b);
+void	ft_sort_five(t_stack **a, t_stack **b);
 #endif
