@@ -12,23 +12,6 @@
 
 #include "push_swap.h"
 
-#include <time.h>
-#include <stdio.h>
-
-void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
-{
-	if (size == 2)
-		ft_sort_two(a);
-	else if (size == 3)
-		ft_sort_three(a);
-	else if (size == 4)
-		ft_sort_four(a, b);
-	else if (size == 5)
-		ft_sort_five(a, b);
-	else
-		ft_radix_lsd(a, b);
-}
-
 void	ft_free(char **av)
 {
 	int	i;
@@ -90,7 +73,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	ft_init_stacks(&a, av, ac);
 	if (!ft_is_sorted(&a))
-		ft_do_sort(&a, &b, ft_size(&a));	
+		ft_do_sort(&a, &b, ft_size(&a));
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }

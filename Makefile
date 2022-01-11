@@ -20,19 +20,24 @@ OBJS = ${SRCS:.c=.o}
 
 NAME = push_swap
 
-${NAME}: ${OBJS}
-		$(MAKE) all -C libft
-		${CC} ${OBJS} libft/libft.a -o ${NAME}
+$(NAME): $(OBJS)
+		@ printf '\033[0;33mCompiling Libft\033[0m\n'
+		@ $(MAKE) -s all -C libft
+		@ printf '\033[0;32mLibft compiled sucessfully !\033[0m\n'
+		@ printf '\033[0;33mCompiling push_swap\033[0m\n'
+		@ ${CC} ${OBJS} libft/libft.a -o ${NAME}
+		@ printf '\033[0;32mpush_swap compiled sucessfully !\033[0m\n'
 
-all: ${NAME}
+all: $(NAME)
 
 clean:
-	rm -f ${OBJS}
-	$(MAKE) clean -C libft
+	@ rm -f ${OBJS}:
+	@ $(MAKE) -s clean -C libft
 
 fclean: clean
-		rm -f ${NAME}
-		$(MAKE) fclean -C libft
+		@ rm -f ${NAME}
+		@ $(MAKE) -s fclean -C libft
+		@ printf '\033[0;32mfclean done\033[0m\n'
 
 re: fclean all
 

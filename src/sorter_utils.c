@@ -1,60 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   sorter_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 15:39:31 by bbordere          #+#    #+#             */
-/*   Updated: 2021/12/30 16:17:06 by bbordere         ###   ########.fr       */
+/*   Created: 2022/01/11 15:29:51 by bbordere          #+#    #+#             */
+/*   Updated: 2022/01/11 15:29:51 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_ss(t_stack **a, t_stack **b)
+int	ft_index_min(t_stack **stack)
 {
-	ft_swap_stack(a, 'a');
-	ft_swap_stack(b, 'b');
-}
-
-void	ft_rr(t_stack **a, t_stack **b)
-{
-	ft_rotate_stack(a, 'a');
-	ft_rotate_stack(b, 'b');
-}
-
-size_t	ft_size(t_stack **stack)
-{
-	size_t	i;
+	int		index;
 	t_stack	*temp;
 
-	i = 0;
 	temp = *stack;
+	index = temp->index;
 	while (temp)
 	{
-		i++;
+		if (temp->index < index)
+			index = temp->index;
 		temp = temp->next;
 	}
-	return (i);
+	return (index);
 }
 
-void	ft_rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse_rotate_stack(a, 'a');
-	ft_reverse_rotate_stack(b, 'b');
-}
-
-int	ft_is_sorted(t_stack **stack)
+int	ft_distance(t_stack **stack, int index)
 {
 	t_stack	*temp;
+	int		distance;
 
-	temp = (*stack);
-	while (temp && temp -> next)
+	distance = 0;
+	temp = *stack;
+	while (temp->index != index)
 	{
-		if (temp->n > temp->next->n)
-			return (0);
+		distance++;
 		temp = temp->next;
 	}
-	return (1);
+	return (distance);
+}
+
+void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
+{
+	if (size == 2)
+		ft_sort_two(a);
+	else if (size == 3)
+		ft_sort_three(a);
+	else if (size == 4)
+		ft_sort_four(a, b);
+	else if (size == 5)
+		ft_sort_five(a, b);
+	else
+		ft_radix_lsd(a, b);
 }

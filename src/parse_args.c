@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-long long ft_atoll(char *str)
+long long	ft_atoll(char *str)
 {
 	long long	i;
 	long long	res;
-	int	s;
+	int			s;
 
 	i = 0;
 	s = 1;
@@ -89,7 +89,7 @@ void	ft_check_args(int ac, char **av, int start)
 			if (av[i][1] != '0')
 				ft_error(ac, av);
 		ft_valid_num(ac, av, av[i]);
-		ft_doublon(ft_atoi(av[i]),ac, av, i);
+		ft_doublon(ft_atoi(av[i]), ac, av, i);
 		i++;
 	}
 }

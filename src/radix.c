@@ -44,7 +44,7 @@ void	ft_radix_lsd(t_stack **a, t_stack **b)
 
 	bit = 0;
 	ft_set_index(a);
-	max = ft_digits(a);	
+	max = ft_digits(a);
 	while (bit < max)
 	{
 		size = ft_size(a);
