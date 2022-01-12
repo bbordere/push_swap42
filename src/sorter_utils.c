@@ -53,6 +53,8 @@ void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
 		ft_sort_four(a, b);
 	else if (size == 5)
 		ft_sort_five(a, b);
+	else if (size >= 6 && size <= 36)
+		ft_sort_stack(a, b);
 	else
 		ft_radix_lsd(a, b);
 }

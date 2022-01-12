@@ -76,16 +76,3 @@ void	ft_swap_stack(t_stack **stack, char dst)
 	else if (dst == 'b')
 		write(1, "sb\n", 3);
 }
-
-#include <stdio.h>
-
-void	print(t_stack **stack)
-{
-	t_stack *temp = *stack;
-	while (temp)
-	{
-		printf("%d -> ", temp->n);
-		temp = temp->next;
-	}
-	printf("NULL\n");
-}

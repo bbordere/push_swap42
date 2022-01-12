@@ -46,8 +46,6 @@ void	ft_sort_four(t_stack **a, t_stack **b)
 {
 	int	distance;
 
-	if ((*a)->index == -1)
-		ft_set_index(a);
 	distance = ft_distance(a, ft_index_min(a));
 	if (distance == 1 || distance == 2)
 		while (distance--)
@@ -66,7 +64,6 @@ void	ft_sort_five(t_stack **a, t_stack **b)
 {
 	int	distance;
 
-	ft_set_index(a);
 	distance = ft_distance(a, ft_index_min(a));
 	if (distance == 1 || distance == 2)
 		while (distance--)

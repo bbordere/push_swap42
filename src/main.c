@@ -62,6 +62,19 @@ void	ft_init_stacks(t_stack **a, char **av, int ac)
 		ft_push(a, ft_stacknew(ft_atoi(av[--args]), 'a'));
 	if (ac == 2)
 		ft_free(av);
+	ft_set_index(a);
+}
+
+#include <stdio.h>
+void	print(t_stack **stack)
+{
+	t_stack *temp = *stack;
+	while (temp)
+	{
+		printf("%d -> ", temp->n);
+		temp = temp->next;
+	}
+	printf("NULL\n");
 }
 
 int	main(int ac, char **av)
@@ -72,8 +85,9 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	ft_init_stacks(&a, av, ac);
-	if (!ft_is_sorted(&a))
-		ft_do_sort(&a, &b, ft_size(&a));
+	// if (!ft_is_sorted(&a))
+	// 	ft_do_sort(&a, &b, ft_size(&a));
+	ft_quicksort(&a, &b, ft_size(&a));
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }

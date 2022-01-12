@@ -32,12 +32,12 @@ size_t	ft_find_min(t_stack *stack)
 
 	i = 0;
 	j = 0;
-	min = stack->n;
+	min = stack->index;
 	while (stack)
 	{
-		if (stack -> n < min)
+		if (stack -> index < min)
 		{
-			min = stack -> n;
+			min = stack -> index;
 			j = i;
 		}
 		stack = stack -> next;
@@ -51,14 +51,13 @@ void	ft_sort_stack(t_stack **a, t_stack **b)
 	size_t	i;
 	size_t	size;
 
-	size = ft_size(a);
 	while (!ft_empty(a))
 	{
+		size = ft_size(a);
 		i = ft_find_min(*a);
-		if (i >= (size / 2))
+		if (i > (size / 2))
 		{
-			i = size - i;
-			while (i--)
+			while (i++ != size)
 				ft_reverse_rotate_stack(a, 'a');
 		}
 		else

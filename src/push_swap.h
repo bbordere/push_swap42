@@ -41,6 +41,7 @@ void	ft_reverse_rotate_stack(t_stack **stack, char name);
 void	ft_push_stack(t_stack **src, t_stack **dest, char dst);
 
 int		ft_empty(t_stack **start);
+int		ft_find_median(t_stack **stack);
 int		ft_is_sorted(t_stack **stack);
 int		ft_index_min(t_stack **stack);
 int		ft_distance(t_stack **stack, int index);
@@ -59,5 +60,6 @@ void	ft_radix_lsd(t_stack **a, t_stack **b);
 void	ft_sort_stack(t_stack **a, t_stack **b);
 void	ft_check_args(int ac, char **av, int start);
 void	ft_do_sort(t_stack **a, t_stack **b, size_t size);
+void	ft_quicksort(t_stack **a, t_stack **b, int n);
 
 #endif
