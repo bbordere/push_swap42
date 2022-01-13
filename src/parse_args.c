@@ -52,9 +52,14 @@ void	ft_valid_num(int ac, char **av, char *n)
 	long long		temp;
 	size_t			i;
 
-	i = -1;
 	if (ft_strlen(n) == 1 && (n[0] == '+' || n[0] == '-'))
 		ft_error(ac, av);
+	i = 0;
+	if (n[i] == '-' || n[i] == '+')
+		i++;
+	if (n[i] == '0' && n[i + 1])
+		ft_error(ac, av);
+	i = -1;
 	while (n[++i])
 		if (!ft_isdigit(n[i]) && n[i] != '-' && n[i] != '+')
 			ft_error(ac, av);
@@ -86,8 +91,7 @@ void	ft_check_args(int ac, char **av, int start)
 		if (!av[i])
 			ft_error(ac, av);
 		if ((ft_strlen(av[i]) > 11 && (av[i][0] != '+' || av[i][0] != '-')))
-			if (av[i][1] != '0')
-				ft_error(ac, av);
+			ft_error(ac, av);
 		ft_valid_num(ac, av, av[i]);
 		ft_doublon(ft_atoi(av[i]), ac, av, i);
 		i++;
