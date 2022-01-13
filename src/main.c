@@ -66,6 +66,20 @@ void	ft_init_stacks(t_stack **a, char **av, int ac)
 }
 
 #include <stdio.h>
+
+void	reverse_print(t_stack **stack)
+{
+	t_stack *temp = *stack;
+	while (temp->next)
+		temp = temp->next;
+	while (temp)
+	{
+		printf("%d <- ", temp->n);
+		temp = temp->prev;
+	}
+	printf("NULL\n");
+}
+
 void	print(t_stack **stack)
 {
 	t_stack *temp = *stack;
@@ -87,6 +101,8 @@ int	main(int ac, char **av)
 	ft_init_stacks(&a, av, ac);
 	if (!ft_is_sorted(&a))
 		ft_do_sort(&a, &b, ft_size(&a));
+	print(&a);
+	reverse_print(&a);
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }

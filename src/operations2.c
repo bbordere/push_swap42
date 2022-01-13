@@ -31,6 +31,7 @@ void	ft_add_bottom(t_stack **stack, t_stack *new)
 	{
 		p = ft_bottom(*stack);
 		p -> next = new;
+		new -> prev = p;
 	}
 }
 
@@ -45,7 +46,6 @@ t_stack	*ft_pop_bottom(t_stack **stack)
 	while ((*stack)->next != bottom)
 		*stack = (*stack)->next;
 	poped = ft_pop(&(*stack)->next);
-	(*stack)->next = NULL;
 	*stack = temp;
 	return (poped);
 }

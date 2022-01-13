@@ -22,6 +22,7 @@
 typedef struct s_stack
 {
 	struct s_stack	*next;
+	struct s_stack	*prev;
 	int				n;
 	int				index;
 	char			name;
@@ -29,6 +30,7 @@ typedef struct s_stack
 
 t_stack	*ft_min(t_stack **a);
 t_stack	*ft_pop(t_stack **stack);
+t_stack	*ft_bottom(t_stack *stack);
 t_stack	*ft_stacknew(int n, char name);
 t_stack	*ft_pop_bottom(t_stack **stack);
 

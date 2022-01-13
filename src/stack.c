@@ -23,13 +23,17 @@ t_stack	*ft_stacknew(int n, char name)
 	new -> next = NULL;
 	new -> name = name;
 	new -> index = -1;
+	new -> prev = NULL;
 	return (new);
 }
 
 void	ft_push(t_stack **stack, t_stack *new)
 {
 	if (*stack)
+	{
+		(*stack)->prev = new;
 		new -> next = *stack;
+	}
 	*stack = new;
 }
 
@@ -40,6 +44,10 @@ t_stack	*ft_pop(t_stack **stack)
 	if (!*stack)
 		return (NULL);
 	temp = *stack;
+	if (ft_size(&temp) >= 2)
+		temp->next->prev = NULL;
+	else
+		temp->prev = NULL;
 	*stack = temp -> next;
 	temp -> next = NULL;
 	return (temp);
@@ -52,7 +60,6 @@ void	ft_push_stack(t_stack **src, t_stack **dest, char name)
 	if (!*src)
 		return ;
 	temp = ft_pop(src);
-	temp -> next = NULL;
 	ft_push(dest, temp);
 	if (name == 'a')
 		write(1, "pa\n", 3);
