@@ -50,6 +50,8 @@ int		ft_distance(t_stack **stack, int index);
 
 size_t	ft_size(t_stack **stack);
 size_t	ft_digits(t_stack **stack);
+size_t	ft_top_chunk_number(t_stack **stack, int min, int max);
+size_t	ft_bottom_chunk_number(t_stack **stack, int min, int max);
 
 void	ft_free(char **av);
 void	ft_sort_two(t_stack **stack);
@@ -64,4 +66,6 @@ void	ft_check_args(int ac, char **av, int start);
 void	ft_do_sort(t_stack **a, t_stack **b, size_t size);
 void	ft_quicksort(t_stack **a, t_stack **b, int n);
 
+
+void	ft_sort(t_stack **stack);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:13:48 by bbordere          #+#    #+#             */
-/*   Updated: 2022/01/12 16:01:31 by bbordere         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:57:02 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_find_median(t_stack **stack)
 		temp = temp->next;
 	return (temp->n);
 }
-
 
 void	ft_quicksort(t_stack **a, t_stack **b, int n)
 {

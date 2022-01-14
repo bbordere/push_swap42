@@ -15,7 +15,7 @@ import sys
 int_max = 2147483647
 int_min = -2147483648
 file = open("rstack.txt", 'w')
-t=random.sample(range(-0, 500), int(sys.argv[1]))
+t=random.sample(range(-2147483648, 2147483647), int(sys.argv[1]))
 for n in t:
 	stri = str(n) + " "
 	file.write(stri)
