@@ -85,7 +85,7 @@ void	print(t_stack **stack)
 	t_stack *temp = *stack;
 	while (temp)
 	{
-		printf("%d -> ", temp->index);
+		printf("%d -> ", temp->n);
 		temp = temp->next;
 	}
 	printf("NULL\n");
@@ -99,13 +99,14 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	ft_init_stacks(&a, av, ac);
-	ft_sort(&a);
 	/*
 	if (!ft_is_sorted(&a))
 		ft_do_sort(&a, &b, ft_size(&a));
 	*/
-	// print(&a);
 	// reverse_print(&a);
+	ft_mark_sort(&a, &b);	
+	//print(&a);
+	//printf("%d\n", ft_is_sorted(&a));
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }

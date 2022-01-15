@@ -24,6 +24,7 @@ t_stack	*ft_stacknew(int n, char name)
 	new -> name = name;
 	new -> index = -1;
 	new -> prev = NULL;
+	new -> keep_a = 0;
 	return (new);
 }
 

@@ -14,14 +14,16 @@
 
 void	ft_ss(t_stack **a, t_stack **b)
 {
-	ft_swap_stack(a, 'a');
-	ft_swap_stack(b, 'b');
+	ft_swap_stack(a, ' ');
+	ft_swap_stack(b, ' ');
+	ft_putendl_fd("ss", 1);
 }
 
 void	ft_rr(t_stack **a, t_stack **b)
 {
-	ft_rotate_stack(a, 'a');
-	ft_rotate_stack(b, 'b');
+	ft_rotate_stack(a, ' ');
+	ft_rotate_stack(b, ' ');
+	ft_putendl_fd("rr", 1);
 }
 
 size_t	ft_size(t_stack **stack)
@@ -41,8 +43,9 @@ size_t	ft_size(t_stack **stack)
 
 void	ft_rrr(t_stack **a, t_stack **b)
 {
-	ft_reverse_rotate_stack(a, 'a');
-	ft_reverse_rotate_stack(b, 'b');
+	ft_reverse_rotate_stack(a, ' ');
+	ft_reverse_rotate_stack(b, ' ');
+	ft_putendl_fd("rrr", 1);
 }
 
 int	ft_is_sorted(t_stack **stack)
