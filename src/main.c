@@ -104,7 +104,7 @@ int	main(int ac, char **av)
 		ft_do_sort(&a, &b, ft_size(&a));
 	*/
 	// reverse_print(&a);
-	ft_mark_sort(&a, &b);	
+	ft_mark_sort(&a, &b);
 	//print(&a);
 	//printf("%d\n", ft_is_sorted(&a));
 	ft_free_stack(&a);
