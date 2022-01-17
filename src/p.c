@@ -132,22 +132,58 @@ t_stack	*ft_find_best_markup(t_stack **stack)
 	return (mark_head);
 }
 
-void	ft_set_markup(t_stack **stack)
+/*
+int	ft_set_markup(t_stack **stack)
 {
 	t_stack	*mark_head;
 	t_stack	*temp;
+	int count;
+	int		index;
 
-	temp = *stack;
 	mark_head = ft_find_best_markup(stack);
-	while (temp)
+	count = 0;
+	temp = *stack;
+	index = mark_head->index;
+	while (temp != mark_head)
 	{
-		if (temp->index == mark_head->index + 1)
+		if (temp->index == index + 1)
 		{
 			temp->keep_a = 1;
-			mark_head = temp;
+			count++;
+			index++;
 		}
+		else
+			temp->keep_a = 0;
 		temp = temp->next;
 	}
+	return (count);
+}
+*/
+
+int ft_set_markup(t_stack **stack)
+{
+	t_stack	*mark_head;
+	t_stack	*temp;
+	int count;
+	int		index;
+
+	mark_head = ft_find_best_markup(stack);
+	count = 0;
+	temp = *stack;
+	index = mark_head->index;
+	while(temp != mark_head)
+	{
+		if (temp -> index > index)
+		{
+			count++;
+			index = temp -> index;
+			temp -> keep_a = 1;
+		}
+		else
+			temp -> keep_a = 0;
+		temp = temp -> next;
+	}
+	return (count);
 }
 
 int	ft_count_to_top(t_stack **stack, t_stack *el)
@@ -317,9 +353,22 @@ void	ft_prepare_stacks(t_stack **a, t_stack **b)
 
 void	ft_mark_sort(t_stack **a, t_stack **b)
 {
-	ft_set_markup(a);
+	int count;
+	int count2;
+
 	while (ft_not_in_a(a))
 	{
+		count = ft_set_markup(a);
+		ft_swap_stack(a,' ');
+		ft_reset_mark(a);
+		count2 = ft_set_markup(a);
+		if (count2 < count)
+		{
+			ft_swap_stack(a,' ');
+			ft_set_markup(a);
+		}
+		else
+			ft_swap_stack(a,' ');
 		if ((*a)->keep_a == 0)
 			ft_push_stack(a, b, 'b');
 		else

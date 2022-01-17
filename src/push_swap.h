@@ -67,7 +67,7 @@ void	ft_check_args(int ac, char **av, int start);
 void	ft_do_sort(t_stack **a, t_stack **b, size_t size);
 void	ft_quicksort(t_stack **a, t_stack **b, int n);
 
-void    ft_set_markup(t_stack **stack);
+int    ft_set_markup(t_stack **stack);
 void	ft_mark_sort(t_stack **a, t_stack **b);
 void	ft_rr(t_stack **a, t_stack **b);
 void	ft_rrr(t_stack **a, t_stack **b);
