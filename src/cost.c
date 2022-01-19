@@ -134,15 +134,21 @@ void    ft_move_to_top(t_stack **stack, t_stack *el, char name)
 void	ft_selection_sort(t_stack **a, t_stack **b)
 {
 	size_t	size;
+	size_t	sa;
 
-	size = 0;
-	while (!ft_is_sorted(a))
+	sa = ft_size(a);
+	size = ft_size(a);
+	while (size > 1)
 	{
-		size++;
+		size--;
+		if (ft_get_index(a, ft_get_min(a)) == 1)
+			ft_swap_stack(a, 'a');
 		ft_move_to_top(a, ft_get_min(a), 'a');
+		if (ft_is_sorted(a))
+			break ;		
 		ft_push_stack(a, b, 'b');
 	}
-	while (size--)
+	while (sa--)
 		ft_push_stack(b, a, 'a');
 }
 
