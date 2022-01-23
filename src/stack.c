@@ -30,7 +30,7 @@ t_stack	*ft_stacknew(int n, char name)
 
 void	ft_push(t_stack **stack, t_stack *new)
 {
-	if (*stack)
+	if (stack && *stack && new)
 	{
 		(*stack)->prev = new;
 		new -> next = *stack;
@@ -42,7 +42,7 @@ t_stack	*ft_pop(t_stack **stack)
 {
 	t_stack	*temp;
 
-	if (!*stack)
+	if (!stack || !*stack)
 		return (NULL);
 	temp = *stack;
 	if (ft_size(&temp) >= 2)

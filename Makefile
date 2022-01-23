@@ -15,7 +15,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 FILES = main.c operations.c operations2.c parse_args.c presort.c radix.c \
-		sort.c sorter_utils.c stack.c simple_sort.c cost.c #p.c
+		sort.c sorter_utils.c stack.c simple_sort.c brr.c
 
 SRCS = $(addprefix src/, $(FILES))
 

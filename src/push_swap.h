@@ -67,11 +67,12 @@ void	ft_check_args(int ac, char **av, int start);
 void	ft_do_sort(t_stack **a, t_stack **b, size_t size);
 void	ft_quicksort(t_stack **a, t_stack **b, int n);
 
-int    ft_set_markup(t_stack **stack);
+//int		ft_set_markup(t_stack **a, t_stack *mark_h, int mark);
 t_stack	*ft_find_median(t_stack **stack);
 void	ft_mark_sort(t_stack **a, t_stack **b);
 void	ft_rr(t_stack **a, t_stack **b);
 void	ft_rrr(t_stack **a, t_stack **b);
+int		ft_get_index(t_stack **stack, t_stack *el);
 
 void	ft_selection_sort(t_stack **a, t_stack **b);
 void	ft_cost_sort(t_stack **a, t_stack **b);

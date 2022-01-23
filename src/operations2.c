@@ -41,9 +41,11 @@ t_stack	*ft_pop_bottom(t_stack **stack)
 	t_stack	*temp;
 	t_stack	*poped;
 
+	if (!*stack)
+		return (NULL);
 	bottom = ft_bottom(*stack);
 	temp = *stack;
-	while ((*stack)->next != bottom)
+	while ((*stack) && (*stack)->next != bottom)
 		*stack = (*stack)->next;
 	poped = ft_pop(&(*stack)->next);
 	*stack = temp;
@@ -54,6 +56,8 @@ void	ft_rotate_stack(t_stack **stack, char name)
 {
 	t_stack	*tmp;
 
+	if (!*stack)
+		return ;
 	tmp = ft_pop(stack);
 	ft_add_bottom(stack, tmp);
 	if (name == 'a')
@@ -66,6 +70,8 @@ void	ft_reverse_rotate_stack(t_stack **stack, char name)
 {
 	t_stack	*tmp;
 
+	if (!*stack)
+			return ;
 	tmp = ft_pop_bottom(stack);
 	ft_push(stack, tmp);
 	if (name == 'a')

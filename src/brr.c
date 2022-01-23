@@ -6,7 +6,7 @@
 /*   By: bbordere <bbordere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:16:24 by bbordere          #+#    #+#             */
-/*   Updated: 2022/01/21 12:45:16 by bbordere         ###   ########.fr       */
+/*   Updated: 2022/01/23 22:05:38 by bbordere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_get_index(t_stack **stack, t_stack *el)
 
 	temp = *stack;
 	count = 0;
-	while (temp != el)
+	while (temp && temp != el)
 	{
 		count++;
 		temp = temp->next;
@@ -108,32 +108,23 @@ t_stack *ft_find_mark_head(t_stack **a)
 	return (mark_head);
 }
 
-void ft_best_mark_head(t_stack **a)
-{
-	t_stack *head;
-
-	head = ft_find_mark_head(a);
-	ft_set_markup(a, head, 1);
-}
-
 int	ft_get_index_a(t_stack **a, t_stack *el)
 {
 	t_stack	*temp;
 	t_stack	*max;
-	t_stack	*last;
+	t_stack	*prev;
 	int		count;
 
 	temp = *a;
 	max = ft_find_max(a);
-	last = ft_bottom(temp);
+	prev = ft_bottom(*a);
 	count = 0;
 	while (temp)
 	{
-		if ((temp->n > el->n && last->n < el->n)
-			|| (temp->n > el->n && last->n == max->n)
-			|| (temp->n < el->n && (last->n == max->n && el->n > max->n)))
+		if ((temp->n > el->n && (prev->n < el->n || prev->n == max->n))
+			|| (temp->n < el->n && el->n > max->n && prev->n == max->n))
 			return (count);
-		last = temp;
+		prev = temp;
 		count++;
 		temp = temp->next;
 	}
@@ -142,7 +133,7 @@ int	ft_get_index_a(t_stack **a, t_stack *el)
 
 size_t ft_optimize_rot(t_stack **stack, size_t index)
 {
-	if (index > ft_size(stack) / 2)
+	if (index > (ft_size(stack) / 2))
 		return (ft_size(stack) - index);
 	return (index);
 }
@@ -150,13 +141,6 @@ size_t ft_optimize_rot(t_stack **stack, size_t index)
 int	ft_min_value(int a, int b)
 {
 	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	ft_max_value(int a, int b)
-{
-	if (a > b)
 		return (a);
 	return (b);
 }
@@ -179,13 +163,12 @@ size_t ft_total_op(t_stack **a, t_stack **b, t_stack *el)
 
 	op_a = ft_get_index_a(a, el);
 	op_b = ft_get_index(b, el);
-	if (op_a > ft_size(a) / 2 && op_b > ft_size(b) / 2)
-		total = ft_max_value(op_a, op_b);
+	total = ft_optimize_rot(a, op_a) + ft_optimize_rot(b, op_b);
+	if ((op_a > ft_size(a) / 2 && op_b > ft_size(b) / 2))
+		total -= ft_min_value(ft_optimize_rot(a, op_a), ft_optimize_rot(b, op_b));
 	else if (op_a <= ft_size(a) / 2 && op_b <= ft_size(b) / 2)
-		total = ft_max_value(op_a, op_b);
-	else
-		total = ft_optimize_rot(a, op_a) + ft_optimize_rot(b, op_b);
-	return (total + 1);
+		total -= ft_min_value(ft_optimize_rot(a, op_a), ft_optimize_rot(b, op_b));
+	return (total);
 }
 
 t_stack	*ft_select(t_stack **a, t_stack **b)
@@ -211,7 +194,7 @@ t_stack	*ft_select(t_stack **a, t_stack **b)
 	return (element);
 }
 
-void	ft_do_boh_rot(t_stack **a, t_stack **b, t_stack *el)
+void	ft_do_both_rot(t_stack **a, t_stack **b, t_stack *el)
 {
 	size_t	op_a;
 	size_t	op_b;
@@ -219,18 +202,13 @@ void	ft_do_boh_rot(t_stack **a, t_stack **b, t_stack *el)
 
 	op_a = ft_get_index_a(a, el);
 	op_b = ft_get_index(b, el);
-	if (op_a > ft_size(a) / 2 && op_b > ft_size(b) / 2)
-	{
-		i = ft_min_value(ft_size(a), ft_size(b)) - ft_min_value(op_a, op_b) + 1;
+	i = ft_min_value(ft_optimize_rot(a, op_a), ft_optimize_rot(b, op_b));
+	if (op_a > (ft_size(a) / 2) && op_b > (ft_size(b) / 2))
 		while (i--)
 			ft_rrr(a, b);
-	}
-	else if (op_a <= ft_size(a) / 2 && op_b <= ft_size(b) / 2)
-	{
-		i = ft_min_value(op_a, op_b);
+	else if (op_a <= (ft_size(a) / 2) && op_b <= (ft_size(b) / 2))		
 		while (i--)
 			ft_rr(a, b);
-	}
 }
 
 void    ft_move_to_top(t_stack **stack, t_stack *el, char name)
@@ -238,28 +216,28 @@ void    ft_move_to_top(t_stack **stack, t_stack *el, char name)
 	t_stack *temp;
 	size_t	count;
 	size_t	size;
+	size_t	i;
 
 	temp = *stack;
 	count = ft_get_index(stack, el);
 	size = ft_size(stack);
-	if (count > size / 2)
-		while (count++ < size)
+	i = ft_optimize_rot(stack, count);
+	if (count > (size / 2))
+		while (i--)
 			ft_reverse_rotate_stack(stack, name);
 	else
-		while (count--)
+		while (i--)
 			ft_rotate_stack(stack, name);
 }
 
 void	ft_move_push_stacks(t_stack **a, t_stack **b)
 {
 	t_stack	*el;
-	int		i;
 
 	el = ft_select(a, b);
-	ft_do_boh_rot(a, b, el);
-	i = ft_get_index_a(a, el);
+	ft_do_both_rot(a, b, el);
+	ft_move_to_top(a, ft_get_i_el(a, ft_get_index_a(a, el)), 'a');
 	ft_move_to_top(b, el, 'b');
-	ft_move_to_top(a, ft_get_i_el(a, i), 'a');
 	ft_push_stack(b, a, 'a');
 }
 
@@ -268,7 +246,7 @@ void	ft_mark_sort(t_stack **a, t_stack**b)
 	size_t	size;
 
 	size = ft_size(a);
-	ft_best_mark_head(a);
+	ft_set_markup(a, ft_find_mark_head(a), 1);
 	while (size)
 	{
 		if ((*a)->keep_a == 0)
@@ -277,7 +255,7 @@ void	ft_mark_sort(t_stack **a, t_stack**b)
 			ft_rotate_stack(a, 'a');
 		size--;
 	}
-	while (!ft_empty(b))
+	while (*b)
 		ft_move_push_stacks(a, b);
 	ft_move_to_top(a, ft_find_min(a), 'a');
 }

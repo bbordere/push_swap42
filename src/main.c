@@ -99,16 +99,8 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	ft_init_stacks(&a, av, ac);
-	/*
 	if (!ft_is_sorted(&a))
 		ft_do_sort(&a, &b, ft_size(&a));
-	*/
-	//ft_sort_stack(&a, &b);
-	// reverse_print(&a);
-	//ft_mark_sort(&a, &b);
-	//print(&a);
-	//printf("%d\n", ft_is_sorted(&a));
-	ft_cost_sort(&a, &b);
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 }
