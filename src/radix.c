@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-size_t	ft_digits(t_stack **stack)
+static size_t	ft_digits(t_stack **stack)
 {
 	int		max;
 	t_stack	*temp;

@@ -28,19 +28,26 @@ int	ft_index_min(t_stack **stack)
 	return (index);
 }
 
-int	ft_distance(t_stack **stack, int index)
+int	ft_get_index(t_stack **stack, t_stack *el)
 {
 	t_stack	*temp;
-	int		distance;
+	int		count;
 
-	distance = 0;
 	temp = *stack;
-	while (temp->index != index)
+	count = 0;
+	while (temp && temp != el)
 	{
-		distance++;
+		count++;
 		temp = temp->next;
 	}
-	return (distance);
+	return (count);
+}
+
+size_t	ft_opti_rot(t_stack **stack, size_t index)
+{
+	if (index > (ft_size(stack) / 2))
+		return (ft_size(stack) - index);
+	return (index);
 }
 
 void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
@@ -53,10 +60,13 @@ void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
 		ft_sort_four(a, b);
 	else if (size == 5)
 		ft_sort_five(a, b);
-	/*
-	else if (size >= 6 && size <= 36)
-		ft_sort_stack(a, b);
-	*/
 	else
 		ft_mark_sort(a, b);
+}
+
+int	ft_empty(t_stack **stack)
+{
+	if (!*stack)
+		return (1);
+	return (0);
 }

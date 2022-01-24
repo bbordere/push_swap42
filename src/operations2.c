@@ -71,7 +71,7 @@ void	ft_reverse_rotate_stack(t_stack **stack, char name)
 	t_stack	*tmp;
 
 	if (!*stack)
-			return ;
+		return ;
 	tmp = ft_pop_bottom(stack);
 	ft_push(stack, tmp);
 	if (name == 'a')

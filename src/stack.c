@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*ft_stacknew(int n, char name)
+t_stack	*ft_stacknew(int n)
 {
 	t_stack	*new;
 
@@ -21,7 +21,6 @@ t_stack	*ft_stacknew(int n, char name)
 		return (NULL);
 	new -> n = n;
 	new -> next = NULL;
-	new -> name = name;
 	new -> index = -1;
 	new -> prev = NULL;
 	new -> keep_a = 0;

@@ -19,11 +19,6 @@ int	ft_empty(t_stack **start)
 	return (0);
 }
 
-int	top(t_stack **stack)
-{
-	return ((*stack)->n);
-}
-
 size_t	ft_find_min(t_stack *stack)
 {
 	int		min;

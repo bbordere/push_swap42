@@ -59,7 +59,7 @@ void	ft_init_stacks(t_stack **a, char **av, int ac)
 	}
 	ft_check_args(ac, av, start);
 	while (args > start)
-		ft_push(a, ft_stacknew(ft_atoi(av[--args]), 'a'));
+		ft_push(a, ft_stacknew(ft_atoi(av[--args])));
 	if (ac == 2)
 		ft_free(av);
 	ft_set_index(a);

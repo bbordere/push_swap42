@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+static int	ft_distance(t_stack **stack, int index)
+{
+	t_stack	*temp;
+	int		distance;
+
+	distance = 0;
+	temp = *stack;
+	while (temp->index != index)
+	{
+		distance++;
+		temp = temp->next;
+	}
+	return (distance);
+}
+
 void	ft_sort_two(t_stack **stack)
 {
 	if (!ft_is_sorted(stack))
