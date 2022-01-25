@@ -12,59 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_free(char **av)
-{
-	int	i;
-
-	i = -1;
-	while (av[++i])
-		free(av[i]);
-	free(av);
-}
-
-int	ft_count_av(char **av)
-{
-	int	i;
-
-	i = 0;
-	while (av[i])
-		i++;
-	return (i);
-}
-
-void	ft_free_stack(t_stack **stack)
-{
-	while (!ft_empty(stack) && (*stack)->next)
-		free(ft_pop_bottom(stack));
-	free((*stack));
-}
-
-void	ft_init_stacks(t_stack **a, char **av, int ac)
-{
-	int	start;
-	int	args;
-
-	start = 1;
-	args = ac;
-	if (args == 2)
-	{
-		av = ft_split(av[1], ' ');
-		args = ft_count_av(av);
-		start = 0;
-		if (!*av)
-		{
-			ft_free(av);
-			exit(1);
-		}
-	}
-	ft_check_args(ac, av, start);
-	while (args > start)
-		ft_push(a, ft_stacknew(ft_atoi(av[--args])));
-	if (ac == 2)
-		ft_free(av);
-	ft_set_index(a);
-}
-
 #include <stdio.h>
 
 void	reverse_print(t_stack **stack)

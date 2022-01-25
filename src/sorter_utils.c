@@ -63,10 +63,3 @@ void	ft_do_sort(t_stack **a, t_stack **b, size_t size)
 	else
 		ft_mark_sort(a, b);
 }
-
-int	ft_empty(t_stack **stack)
-{
-	if (!*stack)
-		return (1);
-	return (0);
-}

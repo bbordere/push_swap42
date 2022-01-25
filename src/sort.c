@@ -12,12 +12,6 @@
 
 #include "push_swap.h"
 
-int	ft_empty(t_stack **start)
-{
-	if (*start == NULL)
-		return (1);
-	return (0);
-}
 
 size_t	ft_find_min(t_stack *stack)
 {

@@ -39,14 +39,6 @@ long long	ft_atoll(char *str)
 	return (s * res);
 }
 
-void	ft_error(int ac, char **av)
-{
-	if (ac == 2)
-		ft_free(av);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
 void	ft_valid_num(int ac, char **av, char *n)
 {
 	long long		temp;
@@ -96,4 +88,11 @@ void	ft_check_args(int ac, char **av, int start)
 		ft_doublon(ft_atoi(av[i]), ac, av, i);
 		i++;
 	}
+}
+
+int	ft_empty(t_stack **start)
+{
+	if (*start == NULL)
+		return (1);
+	return (0);
 }

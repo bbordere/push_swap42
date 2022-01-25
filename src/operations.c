@@ -12,20 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_ss(t_stack **a, t_stack **b)
-{
-	ft_swap_stack(a, ' ');
-	ft_swap_stack(b, ' ');
-	ft_putendl_fd("ss", 1);
-}
-
-void	ft_rr(t_stack **a, t_stack **b)
-{
-	ft_rotate_stack(a, ' ');
-	ft_rotate_stack(b, ' ');
-	ft_putendl_fd("rr", 1);
-}
-
 size_t	ft_size(t_stack **stack)
 {
 	size_t	i;
@@ -41,13 +27,6 @@ size_t	ft_size(t_stack **stack)
 	return (i);
 }
 
-void	ft_rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse_rotate_stack(a, ' ');
-	ft_reverse_rotate_stack(b, ' ');
-	ft_putendl_fd("rrr", 1);
-}
-
 int	ft_is_sorted(t_stack **stack)
 {
 	t_stack	*temp;
@@ -60,4 +39,31 @@ int	ft_is_sorted(t_stack **stack)
 		temp = temp->next;
 	}
 	return (1);
+}
+
+void	ft_free(char **av)
+{
+	int	i;
+
+	i = -1;
+	while (av[++i])
+		free(av[i]);
+	free(av);
+}
+
+int	ft_count_av(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+		i++;
+	return (i);
+}
+
+void	ft_free_stack(t_stack **stack)
+{
+	while (!ft_empty(stack) && (*stack)->next)
+		free(ft_pop_bottom(stack));
+	free((*stack));
 }
