@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 int	ft_set_markup(t_stack **a, t_stack *mark_h, int mark)
 {

@@ -42,6 +42,7 @@ clean:
 
 fclean: clean
 	@ rm -f ${NAME}
+	@ rm -f checker
 	@ $(MAKE) -s fclean -C libft
 	@ $(MAKE) -s fclean -C src/checker
 	@ printf '\033[0;32mfclean done\033[0m\n'

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include "get_next_line.h"
+#include "../includes/push_swap.h"
 
 void	ft_error_checker(t_stack **a, t_stack **b, char *cmd)
 {
