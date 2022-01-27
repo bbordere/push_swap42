@@ -12,96 +12,104 @@
 
 #include "get_next_line.h"
 
-void	*ft_free_all(char *buff, char *memory)
+int	line_len(char *str, int start)
 {
-	free(buff);
-	free(memory);
-	return (NULL);
+	int	i;
+
+	i = start;
+	if (!str)
+		return (0);
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i - start);
 }
 
-char	*ft_get_line(char *memory)
+int	mem_empty(char *memory)
 {
-	int		i;
-	char	*line;
-	int		j;
-
-	i = 0;
-	if (!memory || memory[0] == '\0')
-		return (NULL);
-	while (memory[i] && memory[i] != '\n')
-		i++;
-	if (memory[i] == '\n')
-		i++;
-	line = malloc((i + 1) * sizeof(char));
-	if (!line)
-		return (NULL);
-	j = i;
-	i = -1;
-	while (++i < j)
-		line[i] = memory[i];
-	line[i] = '\0';
-	return (line);
+	while (*memory)
+		if (*(memory++) != 127)
+			return (0);
+	return (1);
 }
 
-char	*ft_buff_to_memory(int fd, char *memory)
+char	*get_memory(int fd, int *bytes, char *memory)
 {
-	char	*buff;
-	int		reader;
+	char	*tmp;
 
-	reader = 1;
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
+	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!tmp)
 		return (NULL);
-	*buff = '\0';
-	while (!ft_strchr(buff, '\n') && reader != 0)
+	*tmp = '\0';
+	while (!ft_strchr(tmp, '\n') && *bytes)
 	{
-		reader = read(fd, buff, BUFFER_SIZE);
-		if (reader == -1)
-			return (ft_free_all(buff, memory));
-		buff[reader] = '\0';
-		memory = ft_strjoin(memory, buff);
+		*bytes = read(fd, tmp, BUFFER_SIZE);
+		if (*bytes < 0)
+		{
+			free(tmp);
+			if (memory)
+				free(memory);
+			return (NULL);
+		}
+		if (!*bytes && !*tmp)
+			break ;
+		tmp[*bytes] = '\0';
+		memory = ft_strjoin(memory, tmp);
 	}
-	free(buff);
-	if (!*memory && !reader)
-		return (ft_free_all(memory, NULL));
+	free(tmp);
 	return (memory);
 }
 
-char	*ft_reset_memory(char *memory, char *line)
+char	*fill_line(char *memory)
 {
-	char	*new;
-	int		len_memory;
-	int		len_line;
+	int		i;
+	int		j;
+	char	*line;
 
-	if (!memory || !line)
+	i = 0;
+	while (memory && memory[i] == 127)
+		i++;
+	line = malloc(sizeof(char) * (line_len(memory, i) + 1));
+	if (!line)
 		return (NULL);
-	len_memory = ft_strlen(memory);
-	len_line = ft_strlen(line);
-	if (len_line == 0)
-		return (ft_free_all(memory, NULL));
-	new = malloc((len_memory - len_line + 1) * sizeof(char));
-	if (!new)
-		return (ft_free_all(memory, NULL));
-	ft_memcpy(new, memory + len_line, len_memory - len_line + 1);
-	free(memory);
-	return (new);
+	j = 0;
+	while (memory[i] && memory[i] != '\n')
+	{
+		line[j++] = memory[i];
+		memory[i++] = 127;
+	}
+	if (memory[i] == '\n')
+	{
+		line[j++] = '\n';
+		memory[i++] = 127;
+	}
+	line[j] = '\0';
+	return (line);
 }
-
-#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
+	int			bytes;
 	char		*line;
 	static char	*memory;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	memory = ft_buff_to_memory(fd, memory);
+	bytes = 1;
+	memory = get_memory(fd, &bytes, memory);
 	if (!memory)
 		return (NULL);
-	line = ft_get_line(memory);
-	if (!line)
+	else if (!bytes && !*memory)
+	{
+		free(memory);
 		return (NULL);
-	memory = ft_reset_memory(memory, line);
+	}
+	line = fill_line(memory);
+	if (mem_empty(memory))
+	{
+		free(memory);
+		memory = 0;
+	}
 	return (line);
 }

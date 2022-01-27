@@ -102,17 +102,14 @@ t_stack	*ft_select(t_stack **a, t_stack **b)
 
 void	ft_mark_sort(t_stack **a, t_stack**b)
 {
-	size_t	size;
-
-	size = ft_size(a);
 	ft_set_markup(a, ft_find_mark_head(a), 1);
-	while (size)
+	while (!ft_is_sorted(a))
 	{
 		if ((*a)->keep_a == 0)
 			ft_push_stack(a, b, 'b');
 		else
 			ft_rotate_stack(a, 'a');
-		size--;
+		ft_push_stack(a, b, 'b');
 	}
 	while (*b)
 		ft_move_push_stacks(a, b);

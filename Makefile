@@ -47,7 +47,7 @@ fclean: clean
 	@ $(MAKE) -s fclean -C src/checker
 	@ printf '\033[0;32mfclean done\033[0m\n'
 
-bonus:
+bonus: all
 	@ $(MAKE) -s all -C src/checker
 
 re: fclean all
