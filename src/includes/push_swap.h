@@ -82,6 +82,7 @@ void	ft_rr(t_stack **a, t_stack **b, int p);
 void	ft_ss(t_stack **a, t_stack **b, int p);
 void	ft_init_stacks(t_stack **a, char **av, int ac);
 void	ft_error(int ac, char **av);
-int	ft_count_av(char **av);
+int		ft_count_av(char **av);
 void	ft_free_stack(t_stack **stack);
+
 #endif

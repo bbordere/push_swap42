@@ -36,14 +36,6 @@ void	ft_rrr(t_stack **a, t_stack **b, int p)
 		ft_putendl_fd("rrr", 1);
 }
 
-void	ft_error(int ac, char **av)
-{
-	if (ac == 2)
-		ft_free(av);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
 void	ft_fill_stack(t_stack **a, int n, int ac, char **av)
 {
 	t_stack	*new;

@@ -12,7 +12,6 @@
 
 #include "includes/push_swap.h"
 
-
 size_t	ft_find_min(t_stack *stack)
 {
 	int		min;

@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 		if (!cmd)
 			break ;
 		ft_do_op(&a, &b, cmd);
-		free(cmd);		
+		free(cmd);
 	}
 	if (ft_is_sorted(&a) && ft_empty(&b))
 		ft_putendl_fd("OK", 1);

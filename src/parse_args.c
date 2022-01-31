@@ -90,9 +90,10 @@ void	ft_check_args(int ac, char **av, int start)
 	}
 }
 
-int	ft_empty(t_stack **start)
+void	ft_error(int ac, char **av)
 {
-	if (*start == NULL)
-		return (1);
-	return (0);
+	if (ac == 2)
+		ft_free(av);
+	ft_putendl_fd("Error", 2);
+	exit(1);
 }

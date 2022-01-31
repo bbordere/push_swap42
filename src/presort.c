@@ -12,6 +12,13 @@
 
 #include "includes/push_swap.h"
 
+int	ft_empty(t_stack **start)
+{
+	if (*start == NULL)
+		return (1);
+	return (0);
+}
+
 t_stack	*ft_min(t_stack **a)
 {
 	t_stack	*temp;

@@ -40,14 +40,18 @@ void	ft_do_both_rot(t_stack **a, t_stack **b, t_stack *el)
 	size_t	op_a;
 	size_t	op_b;
 	size_t	i;
+	size_t	size_a;
+	size_t	size_b;
 
+	size_a = ft_size(a);
+	size_b = ft_size(b);
 	op_a = ft_get_index_a(a, el);
 	op_b = ft_get_index(b, el);
 	i = ft_min_value(ft_opti_rot(a, op_a), ft_opti_rot(b, op_b));
-	if (op_a > (ft_size(a) / 2) && op_b > (ft_size(b) / 2))
+	if (op_a > (size_a / 2) && op_b > (size_b / 2))
 		while (i--)
 			ft_rrr(a, b, 1);
-	else if (op_a <= (ft_size(a) / 2) && op_b <= (ft_size(b) / 2))
+	else if (op_a <= (size_a / 2) && op_b <= (size_b / 2))
 		while (i--)
 			ft_rr(a, b, 1);
 }

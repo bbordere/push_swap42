@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
-
+/*
 #include <stdio.h>
 
 void	reverse_print(t_stack **stack)
@@ -37,6 +37,7 @@ void	print(t_stack **stack)
 	}
 	printf("NULL\n");
 }
+*/
 
 int	main(int ac, char **av)
 {

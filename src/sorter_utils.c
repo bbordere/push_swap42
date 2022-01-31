@@ -45,8 +45,11 @@ int	ft_get_index(t_stack **stack, t_stack *el)
 
 size_t	ft_opti_rot(t_stack **stack, size_t index)
 {
-	if (index > (ft_size(stack) / 2))
-		return (ft_size(stack) - index);
+	size_t	size;
+
+	size = ft_size(stack);
+	if (index > (size / 2))
+		return (size - index);
 	return (index);
 }
 
