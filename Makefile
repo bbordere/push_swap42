@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang
+CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 FILES = main.c operations.c operations2.c parse_args.c presort.c \
 		sorter_utils.c stack.c simple_sort.c algo.c utils.c mark_utils.c stack_utils.c

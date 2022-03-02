@@ -61,6 +61,8 @@ void	ft_init_stacks(t_stack **a, char **av, int ac)
 	if (args == 2)
 	{
 		av = ft_split(av[1], ' ');
+		if (!av)
+			exit(1);
 		args = ft_count_av(av);
 		start = 0;
 		if (!*av)

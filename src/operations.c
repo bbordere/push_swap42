@@ -46,8 +46,9 @@ void	ft_free(char **av)
 	int	i;
 
 	i = -1;
-	while (av[++i])
-		free(av[i]);
+	if (av)
+		while (av[++i])
+			free(av[i]);
 	free(av);
 }
 
@@ -56,8 +57,9 @@ int	ft_count_av(char **av)
 	int	i;
 
 	i = 0;
-	while (av[i])
-		i++;
+	if (av)
+		while (av[i])
+			i++;
 	return (i);
 }
 

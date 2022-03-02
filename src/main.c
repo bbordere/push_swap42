@@ -11,33 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
-/*
-#include <stdio.h>
-
-void	reverse_print(t_stack **stack)
-{
-	t_stack *temp = *stack;
-	while (temp->next)
-		temp = temp->next;
-	while (temp)
-	{
-		printf("%d <- ", temp->n);
-		temp = temp->prev;
-	}
-	printf("NULL\n");
-}
-
-void	print(t_stack **stack)
-{
-	t_stack *temp = *stack;
-	while (temp)
-	{
-		printf("%d -> ", temp->n);
-		temp = temp->next;
-	}
-	printf("NULL\n");
-}
-*/
 
 int	main(int ac, char **av)
 {

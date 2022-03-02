@@ -63,12 +63,10 @@ t_stack	*ft_get_i_el(t_stack **stack, int i)
 
 void	ft_move_to_top(t_stack **stack, t_stack *el, char name)
 {
-	t_stack	*temp;
 	size_t	count;
 	size_t	size;
 	size_t	i;
 
-	temp = *stack;
 	count = ft_get_index(stack, el);
 	size = ft_size(stack);
 	i = ft_opti_rot(stack, count);
